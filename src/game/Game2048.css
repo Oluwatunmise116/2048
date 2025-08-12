@@ -1,0 +1,87 @@
+/* 0G-styled, responsive 2048 board */
+
+/* Wrap the game column and prevent overflow */
+.game-container{
+  width:100%;
+  max-width:520px;             /* clamps column on desktop */
+  margin:0 auto;
+  padding:24px 0 32px;
+}
+
+/* Score row + restart */
+.score-board{
+  display:flex; align-items:center; justify-content:space-between;
+  gap:10px; width:100%; max-width:520px; margin:0 auto 12px;
+}
+.score-board h2{
+  margin:0; font-size:1.25rem; color:#14F195; text-shadow:0 0 10px #14F19555;
+}
+.score-board button{
+  background:linear-gradient(90deg,#8b5cf6,#a855f7);
+  padding:8px 14px; border-radius:10px; font-size:.95rem; color:#fff;
+  box-shadow:0 0 12px rgba(168,85,247,.6);
+}
+
+/* Board container */
+.board{
+  width:min(92vw, 360px);      /* NEVER wider than viewport; max 360px */
+  margin:8px auto 0;
+  display:grid; grid-template-rows:repeat(4, 1fr);
+  gap:8px;
+  background:rgba(255,255,255,0.07);
+  padding:8px; border-radius:12px;
+  box-shadow: 0 0 20px rgba(127,90,240,0.6);
+}
+
+/* Row + cells */
+.board-row{
+  display:grid; grid-template-columns:repeat(4, 1fr);
+  gap:8px;
+}
+
+/* If your Tile component uses className="tile", these styles apply;
+   otherwise the inline styles from Tile.js will still keep squares. */
+.tile{
+  width:100%;
+  aspect-ratio:1/1;            /* always square */
+  border-radius:8px;
+  display:flex; align-items:center; justify-content:center;
+  font-weight:800; color:#fff;
+  background:rgba(255,255,255,0.1);
+  box-shadow:0 0 10px rgba(127,90,240,.35);
+  transition: transform .15s ease, box-shadow .2s ease;
+}
+.tile:hover{ transform: translateY(-1px); box-shadow:0 0 14px rgba(127,90,240,.55); }
+
+/* Optional colored values if you add data-value on the tile element */
+.tile[data-value="2"]    { background:#ede0c8; color:#776e65; }
+.tile[data-value="4"]    { background:#f2b179; color:#fff; }
+.tile[data-value="8"]    { background:#f59563; color:#fff; }
+.tile[data-value="16"]   { background:#f67c5f; color:#fff; }
+.tile[data-value="32"]   { background:#f65e3b; color:#fff; }
+.tile[data-value="64"]   { background:#edcf72; color:#fff; }
+.tile[data-value="128"]  { background:#edcc61; color:#fff; }
+.tile[data-value="256"]  { background:#edc850; color:#fff; }
+.tile[data-value="512"]  { background:#edc53f; color:#fff; }
+.tile[data-value="1024"] { background:#edc22e; color:#fff; }
+.tile[data-value="2048"] { background:#8b5cf6; color:#fff; }
+
+/* Game over panel */
+.game-over{
+  margin-top:16px; padding:14px; text-align:center;
+  background:rgba(0,0,0,0.45); border-radius:12px;
+  box-shadow:0 0 12px rgba(168,85,247,.6);
+}
+.game-over h3{ margin:0 0 6px; }
+.game-over p{ margin:0 0 10px; }
+.game-over button{
+  background:linear-gradient(90deg,#8b5cf6,#a855f7);
+  border:none; color:#fff; padding:8px 14px; margin:5px; border-radius:10px;
+  box-shadow:0 0 10px rgba(168,85,247,.6);
+}
+
+/* Mobile tweaks */
+@media (max-width: 500px){
+  .score-board{ flex-direction:column; align-items:flex-start; gap:8px; }
+  .score-board h2{ font-size:1.1rem; }
+}
